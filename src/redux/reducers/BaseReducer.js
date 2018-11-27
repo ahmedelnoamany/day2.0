@@ -1,5 +1,5 @@
 const initialState = {
-  dummyVar: 'dummy'
+  activeView: 0
 };
 
 export default function (state = initialState, action) {
@@ -7,6 +7,11 @@ export default function (state = initialState, action) {
     this.state = initialState;
   }
   switch (action.type) {
+    case 'CHANGE_VIEW' :
+      return {
+        ...state,
+        activeView: action.payload
+      }
     default:
       return state;
     }
