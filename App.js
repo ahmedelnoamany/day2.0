@@ -25,12 +25,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#EB6B6B',
   },
   header: {
-    flex: .1
+    flex: .1,
+    width: '100%'
   },
   routine: {
-    flex: .9
+    flex: .9,
+    width: '100%'
   },
 });
