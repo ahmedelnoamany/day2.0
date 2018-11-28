@@ -39,11 +39,11 @@ class OptionMenu extends Component {
   renderSwitch() {
     return (
       <TouchableOpacity 
-      style={styles.buttonInactive}
-      onPress={() => this.setState({ optionsActive: true })}
-    >
-      <Text>Options</Text>
-    </TouchableOpacity>
+        style={styles.buttonInactive}
+        onPress={() => this.setState({ optionsActive: true })}
+      >
+        <Icon name='menu' size={30}></Icon>
+      </TouchableOpacity>
     )
   }
   render() {
