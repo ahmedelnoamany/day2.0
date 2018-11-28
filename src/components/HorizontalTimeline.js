@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Button } from 'react-native';
 import DraggableFlatList from 'react-native-draggable-flatlist';
+import Event from './Event';
 
 var activites = [
   {name: 'work', time: '12:00'},
@@ -34,7 +35,7 @@ class HorizontalTimeline extends Component {
           onLongPress={move}
           onPressOut={moveEnd}
         >
-          <Text>Event!</Text>
+          <Event name={item.label} time={item.time} size={1} />
         </TouchableOpacity>
       )
     } else if (this.state.data.length > 4 && this.state.data.length <= 6) {
@@ -44,7 +45,7 @@ class HorizontalTimeline extends Component {
           onLongPress={move}
           onPressOut={moveEnd}
         >
-          <Text>More Events!</Text>
+          <Event name={item.label} time={item.time} size={2} />
         </TouchableOpacity>
       )
     } else {
@@ -54,7 +55,7 @@ class HorizontalTimeline extends Component {
           onLongPress={move}
           onPressOut={moveEnd}
         >
-          <Text>Most Events!</Text>
+          <Event name={item.label} time={item.time} size={3} index={index}/>
         </TouchableOpacity>
       )
     }
