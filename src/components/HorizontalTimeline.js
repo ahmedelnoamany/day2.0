@@ -60,8 +60,17 @@ class HorizontalTimeline extends Component {
       )
     }
   }
-  handleDara = newData => {
+  handleData = newData => {
     let recievedData = newData;
+    let { schedule } = this.state;
+    let finalData = [];
+
+    for(let i = 0; i < recievedData.length; i++) {
+      recievedData[i].time = schedule[i];
+      finalData.push(recievedData[i]);
+    }
+    this.setState({ data: finalData, schedule});
+    
   }
   render() {
     return (
