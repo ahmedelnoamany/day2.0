@@ -113,7 +113,8 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
     backgroundColor: '#FFFFF8',
-    marginTop: '-10%'
+    marginTop: '-6%',
+    marginLeft: '3%'
   },
   morningText: {
     fontSize: 25,
