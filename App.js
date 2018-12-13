@@ -3,7 +3,7 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import Routine from './src/containers/routine/Routine';
-import Header from './src/components/Header';
+import Header from './src/components/Header/Header';
 
 export default class App extends Component {
   render() {

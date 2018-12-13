@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Button } from 'react-native';
 import DraggableFlatList from 'react-native-draggable-flatlist';
-import Event from './Event';
+import Event from '../Event/Event';
+import { styles } from './styles';
 
 var activites = [
   {name: 'work', time: '12:00'},
@@ -94,62 +95,5 @@ class HorizontalTimeline extends Component {
     )
   }
 }
-const styles = StyleSheet.create({
-  button: {
-
-  },
-  mainContainer: {
-    flex: 1,
-    width: '100%',
-    backgroundColor: '#331832',
-    display: 'flex',
-    flexDirection:'column',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  upperContainer: {
-    flex: 1,
-    backgroundColor: 'transparent',
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-
-  },
-  lowerContainer: {
-    flex: .1,
-    width: '100%',
-    backgroundColor: 'transparent',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-    
-  },
-  timeline: {
-    width: '80%',
-    height: '50%',
-    backgroundColor: 'grey'
-  },
-  timelineText: {
-    color: 'grey',
-    fontSize: 14,
-    fontWeight: 'bold'
-  },
-  draggableItem: {
-   width: 80,
-   margin: 2,
-   height: '100%'
-  },
-  draggableItemMedium: {
-    width: 55,
-    margin: 2,
-    height: '100%'
-  },
-  draggableItemSmall: {
-    width: 30,
-    margin: 2,
-    height: '100%'
-  }
-})
 
 export default HorizontalTimeline;

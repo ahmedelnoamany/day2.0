@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import OptionMenu from '../../components/OptionMenu';
-import HorizontalTimeline from '../../components/HorizontalTimeline';
-import VerticalTimeline from '../../components/VerticalTimeline';
+import OptionMenu from '../../components/OptionMenu/OptionMenu';
+import HorizontalTimeline from '../../components/HorizontalTimeline/HorizontalTimeline';
+import VerticalTimeline from '../../components/VerticalTimeline/VerticalTimeline';
 
 class Morning extends Component {
   render() {
@@ -31,17 +31,14 @@ const styles = StyleSheet.create({
   optionContainer: {
     flex: .05,
     width: '100%',
-    backgroundColor: 'blue'
   },
   horizontalTimelineContainer: {
     flex: .3,
     width: '100%',
-    backgroundColor: 'orange'
   },
   VerticalTimelineContainer: {
     flex: .65,
     width: '100%',
-    backgroundColor: 'brown'
   }
 });
 
