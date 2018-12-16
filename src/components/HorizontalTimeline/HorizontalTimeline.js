@@ -4,29 +4,42 @@ import DraggableFlatList from 'react-native-draggable-flatlist';
 import Event from '../Event/Event';
 import { styles } from './styles';
 
-var activites = [
-  {name: 'work', time: '12:00'},
-  {name: 'excercise', time: '1:00'},
-  {name: 'read', time: '2:00'},
-  {name: 'eat', time: '3:00'}
-]
+// var activites = [
+//   {name: 'work', time: '12:00'},
+//   {name: 'excercise', time: '1:00'},
+//   {name: 'read', time: '2:00'},
+//   {name: 'eat', time: '3:00'}
+// ]
 
 class HorizontalTimeline extends Component {
-  state = {
-    data: [...activites].map((d, index) => ({
-      key: `item-${index}`,
-      label: d.name,
-      time: d.time
-    })),
-    schedule: [
-      '12:00',
-      '1:00',
-      '2:00',
-      '3:00',
-    ],
-    start: '12:00',
-    end: '4:00'
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      schedule: [],
+      start: '',
+      end: '',
+      disallowChangeIndex: true
+    }
   }
+  componentWillReceiveProps(props) {
+    if (props.routine) {
+      let activities = props.routine.activities;
+      let { startTime, endTime, schedule } = props.routine;
+      let data = [...activities].map((d, index) => ({
+        key: `item-${index}`,
+        label: d.name,
+        time: d.time
+      }));
+      this.setState({
+        data,
+        schedule,
+        start: startTime,
+        end: endTime
+      })
+    }
+  }
+
 
   renderItem = ({ item, index, move, moveEnd, isActive }) => {
     if(this.state.data.length <= 4) {
@@ -35,6 +48,7 @@ class HorizontalTimeline extends Component {
           style={styles.draggableItem}
           onLongPress={move}
           onPressOut={moveEnd}
+          disabled={this.state.disallowChangeIndex}
         >
           <Event name={item.label} time={item.time} size={1} />
         </TouchableOpacity>
@@ -45,6 +59,7 @@ class HorizontalTimeline extends Component {
           style={styles.draggableItemMedium}
           onLongPress={move}
           onPressOut={moveEnd}
+          disabled={this.state.disallowChangeIndex}
         >
           <Event name={item.label} time={item.time} size={2} />
         </TouchableOpacity>
@@ -55,6 +70,7 @@ class HorizontalTimeline extends Component {
           style={styles.draggableItemSmall}
           onLongPress={move}
           onPressOut={moveEnd}
+          disabled={this.state.disallowChangeIndex}
         >
           <Event name={item.label} time={item.time} size={3} index={index}/>
         </TouchableOpacity>

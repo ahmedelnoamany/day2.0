@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   headerContainer: {
     flex: 1,
+    height: 90,
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
@@ -11,7 +12,7 @@ export const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.8,
     shadowRadius: 1,  
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   linearGradientContainerMorning: {
     flex: 1,

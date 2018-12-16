@@ -8,27 +8,33 @@ import { changeView } from '../../redux/actions/BaseActions';
 import Morning from './Morning';
 import Afternoon from './Afternoon';
 import Evening from './Evening';
+import Header from '../../components/Header/Header';
 
 class Routine extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
     }
   }
   render() {
-    console.log('The current Active view from store is: ', this.props.activeView)
+    let { morningRoutine, afternoonRoutine, eveningRoutine } = this.props;
     return (
-      <Swiper 
-        loop={false} 
-        showsPagination={false} 
-        horizontal={true} 
-        onIndexChanged={(index) => this.props.changeView(index)}
-      >
-        <Morning />
-        <Afternoon />
-        <Evening />
-      </Swiper>
+      <View style={{flex: 1, width: '100%', backgroundColor:'#EB6B6B'}}>
+        <View style={{height: 90}}>
+          <Header/>
+        </View>
+        <Swiper 
+          loop={false} 
+          showsPagination={false} 
+          horizontal={true} 
+          onIndexChanged={(index) => this.props.changeView(index)}
+        >
+          <Morning routine={morningRoutine} navigator={this.props.navigation}/>
+          <Afternoon routine={afternoonRoutine} navigator={this.props.navigation}/>
+          <Evening routine={eveningRoutine} navigator={this.props.navigation}/>
+        </Swiper>
+      </View>
+      
     )
   }
 }
@@ -41,7 +47,9 @@ function bindActions(dispatch) {
 
 const mapStateToProps = state => ({
   activeView: state.BaseReducer.activeView,
-  
+  morningRoutine: state.BaseReducer.morningRoutine,
+  afternoonRoutine: state.BaseReducer.afternoonRoutine,
+  eveningRoutine: state.BaseReducer.eveningRoutine
 });
 
 export default connect(mapStateToProps, bindActions)(Routine);

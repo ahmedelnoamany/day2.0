@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Animated } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import { styles } from './styles';
 
 class Header extends Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+    }
+  }
   renderHeader() {
     if (this.props.activeView === 0)
       return this.renderMorningHeader();
@@ -17,7 +21,9 @@ class Header extends Component {
 
   renderMorningHeader() {
     return (
-        <View style={styles.headerContainer}>
+        <View
+          style={styles.headerContainer}
+        >
           <LinearGradient
             start={{x: 0, y: 0}}
             end={{x: 1, y: 0}}

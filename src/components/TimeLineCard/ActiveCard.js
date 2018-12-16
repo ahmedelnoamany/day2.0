@@ -7,7 +7,6 @@ export default class ActiveCard extends Component {
     let { card } = this.props;
     return (
       <View 
-        key='active-card'
         style={styles.activeCardContainer}
       >
         <Text style={styles.smallHeadingText}>Now</Text>

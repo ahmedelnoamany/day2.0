@@ -3,21 +3,25 @@ import { View, Text, FlatList } from 'react-native';
 import ActiveCard from '../TimeLineCard/ActiveCard';
 import NormalCard from '../TimeLineCard/NormalCard';
 
-var activites = [
-  {name: 'Good Morning!', time: ''},
-  {name: 'Work', time: '12:00'},
-  {name: 'Excercise', time: '1:00'},
-  {name: 'Read', time: '4:00'},
-  {name: 'Eat', time: '5:00'},
-  {name: 'Well done on completing your morning routine! Press here to move on to your afternoon!', time:''}
-]
 
 class VerticalTimeline extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      routine: activites,
+      routine: [],
       time: ''
+    }
+  }
+  componentWillReceiveProps(props) {
+    if(props.routine) {
+      let { activities } = props.routine;
+      let beforeCard = {name: 'Good Morning!', time: ''};
+      let afterCard = {name: 'Well done on completing your morning routine! Press here to move on to your afternoon!', time:''};
+      let routine = [];
+      routine.push(beforeCard);
+      routine = routine.concat(activities);
+      routine.push(afterCard);
+      this.setState({ routine });
     }
   }
   getTime() {
@@ -46,6 +50,7 @@ class VerticalTimeline extends Component {
     return (
       <FlatList
         data={this.state.routine}
+        keyExtractor={(item, index) => item.name + index}
         renderItem={({item, index}) =>(this.renderCard(item, index))}
       />
     )

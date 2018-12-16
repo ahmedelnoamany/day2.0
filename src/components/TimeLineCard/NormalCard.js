@@ -7,7 +7,6 @@ export default class NormalCard extends Component {
     let { card, type } = this.props;
     return (
       <View 
-        key={card.name}
         style={styles.normalCardContainer}
       >
         <View 

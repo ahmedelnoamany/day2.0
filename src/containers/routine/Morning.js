@@ -5,41 +5,31 @@ import OptionMenu from '../../components/OptionMenu/OptionMenu';
 import HorizontalTimeline from '../../components/HorizontalTimeline/HorizontalTimeline';
 import VerticalTimeline from '../../components/VerticalTimeline/VerticalTimeline';
 
+import { styles } from './styles';
+
 class Morning extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      routine: {}
+    }
+  }
+  componentDidMount() {
+    this.setState({ routine: this.props.routine });
+  }
   render() {
     return (
       <View style={styles.morningContainer}>
-        <OptionMenu />
+        <OptionMenu navigator={this.props.navigator}/>
         <View style={styles.horizontalTimelineContainer}>
-          <HorizontalTimeline />
+          <HorizontalTimeline routine={this.state.routine} />
         </View>
         <View style={styles.VerticalTimelineContainer}>
-          <VerticalTimeline />
+          <VerticalTimeline routine={this.state.routine}/>
         </View>
       </View>
     )
   }
 }
-
-
-const styles = StyleSheet.create({
-  morningContainer: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center'
-  },
-  optionContainer: {
-    flex: .05,
-    width: '100%',
-  },
-  horizontalTimelineContainer: {
-    flex: .3,
-    width: '100%',
-  },
-  VerticalTimelineContainer: {
-    flex: .65,
-    width: '100%',
-  }
-});
 
 export default Morning;

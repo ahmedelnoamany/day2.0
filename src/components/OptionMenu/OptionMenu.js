@@ -21,21 +21,40 @@ class OptionMenu extends Component {
         </TouchableOpacity>
         <View style={styles.buttonContainerA}>
           <View style={styles.buttonContents}>
-            <TouchableOpacity style={styles.option}><Icon name='event' size={50} color='#0098E5'></Icon></TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.option}
+            >
+              <Icon name='event' size={50} color='#0098E5'></Icon>
+            </TouchableOpacity>
             <Text style={styles.optionText}>Add Event</Text>
           </View>
           <View style={styles.buttonContents}>
-            <TouchableOpacity style={styles.option}><Icon name='schedule' size={50} color='#0E5183'></Icon></TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.option}
+              onPress={() => this.props.navigator.navigate('EditSchedule')}
+            >
+              <Icon name='schedule' size={50} color='#0E5183'></Icon>
+            </TouchableOpacity>
             <Text style={styles.optionText}>Edit Schedule</Text>
           </View>
         </View>
         <View style={styles.buttonContainerB}>
           <View style={styles.buttonContents}>
-            <TouchableOpacity style={styles.option}><Icon name='notifications' size={50} color='#F6422E'></Icon></TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.option}
+              onPress={() => this.props.navigator.navigate('Notifications')}
+            >
+              <Icon name='notifications' size={50} color='#F6422E'></Icon>
+            </TouchableOpacity>
             <Text style={styles.optionText}>Manage Notifications</Text>
           </View>
           <View style={styles.buttonContents}>
-            <TouchableOpacity style={styles.option}><Icon name='stars' size={50} color='#FEC900'></Icon></TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.option}
+              onPress={() => this.props.navigator.navigate('MyAchievements')}
+            >
+              <Icon name='stars' size={50} color='#FEC900'></Icon>
+            </TouchableOpacity>
             <Text style={styles.optionText}>My Achievements</Text>
           </View>
         </View>
@@ -53,6 +72,7 @@ class OptionMenu extends Component {
     )
   }
   render() {
+    console.log('Options menu loaded, nav is: ', this.props.navigator);
     return (
       <View 
         style={this.state.optionsActive ? styles.optionsOpen : styles.optionsContainer}
