@@ -66,7 +66,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   eventContainer: {
-    flex: .8,
+    flex: 1,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'flex-start',
@@ -75,9 +75,32 @@ export const styles = StyleSheet.create({
     color: '#86EDB1'
   },
   routineCard: {
-    flex: .2,
+    height: 80,
     marginVertical: '.5%',
     width: '90%',
-    backgroundColor: '#FFFFFF'
+    backgroundColor: '#FFFFFF',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly'
+  },
+  routineCardTextContainer: {
+    flexDirection: 'row',
+    flex: .7,
+    height: '100%',
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  },
+  routineCardButtonContainer: {
+    flex: .3,
+    height: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around'
+  },
+  routineCardText: {
+    fontFamily: 'Helvetica',
+    fontWeight: 'normal',
+    fontSize: 15,
+    color: '#331832'
   }
 });

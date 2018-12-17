@@ -36,14 +36,15 @@ const initialState = {
   },
   eveningRoutine: {
     startTime: '5:00',
-    endTime: '10:00',
+    endTime: '11:00',
     activities: [
       {name: 'Read', time: '5:00'},
       {name: 'Draw', time: '6:00'},
       {name: 'Relax', time: '7:00'},
       {name: 'Dinner', time: '8:00'},
       {name: 'Email', time: '9:00'},
-      {name: 'Sleep', time: '10:00'}
+      {name: 'TV', time: '10:00'},
+      {name: 'Sleep', time: '11:00'}
     ],
     schedule: [
       '5:00',
@@ -51,7 +52,8 @@ const initialState = {
       '7:00',
       '8:00',
       '9:00',
-      '10:00'
+      '10:00',
+      '11:00'
     ]
   }
 };

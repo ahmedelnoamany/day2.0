@@ -1,20 +1,61 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { connect } from 'react-redux';
+import Switch from 'react-native-customisable-switch';
 import SecondaryHeader from '../../components/Header/SecondaryHeader';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import { styles } from './styles';
 
-export default class EditSchedule extends Component { 
+class EditSchedule extends Component { 
   constructor(props) {
     super(props);
     this.state = {
-      activeRoutine: 1
+      activeRoutine: 1,
+      routineSwitches: [
+        {title: 'Morning Alarm?', enabled: false},
+        {title: 'Morning Routine Notifications', enabled: false},
+        {title: 'Disable Morning Routine', enabled: false}
+      ]
     }
   }
   renderRoutine() {
+    let { morningRoutine, afternoonRoutine, eveningRoutine } = this.props;
+    let { activeRoutine } = this.state;
+    let currentEventList = null;
+    if(activeRoutine === 1) {
+      currentEventList = morningRoutine.activities;
+    } else if (activeRoutine === 2) {
+      currentEventList = afternoonRoutine.activities;
+    } else if (activeRoutine === 3) {
+      currentEventList = eveningRoutine.activities;
+    }
     return (
-      <View style={styles.eventContainer}>
-        <View style={styles.routineCard}><Text>Card</Text></View>
-        <View style={styles.routineCard}><Text>Card</Text></View>
+      <ScrollView style={{flex: 1, width: '100%'}}>
+        <View style={styles.eventContainer}>
+        {currentEventList.map((event, index) => {
+          return this.renderRoutineCard(event, index);
+        })}
+        </View>
+      </ScrollView>
+    )
+  }
+  renderRoutineCard(event, index) {
+    return (
+      <View style={styles.routineCard}>
+        <View style={styles.routineCardTextContainer}>
+          <Text style={styles.routineCardText}>{event.name}</Text>
+          <Text style={styles.routineCardText}>@</Text>
+          <Text style={styles.routineCardText}>{event.time}</Text>
+        </View>
+        <View style={styles.routineCardButtonContainer}>
+          <TouchableOpacity>
+            <Icon name='bell' size={30} color='#331832'></Icon>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Icon name='square-edit-outline' size={30} color='#331832'></Icon>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
@@ -25,6 +66,34 @@ export default class EditSchedule extends Component {
     } else {
       this.setState({ activeRoutine: index });
     }
+  }
+  renderRoutineToggles() {
+    let { routineSwitches } = this.state;
+    return routineSwitches.map( (item, index) => {
+      return (
+        <View style={styles.singleOption}>
+          <Text>{item.title}</Text>
+          <Switch 
+            value={item.enabled}
+            onChangeValue={() => this.toggleSwitch(index)}
+            switchBorderRadius={0}
+            switchWidth={70}
+            switchHeight={40}
+            buttonBorderRadius={0}
+            buttonHeight={30}
+            buttonWidth={30}
+            inactiveBackgroundColor={'rgba(51, 24, 50, .5)'}
+            activeBackgroundColor={'#331832'}
+          />
+        </View>
+      )
+    });
+  }
+  toggleSwitch(index) {
+    let { routineSwitches } = this.state;
+    routineSwitches[index].enabled = !routineSwitches[index].enabled;
+    this.setState(routineSwitches)
+
   }
   render() {
       let { activeRoutine } = this.state;
@@ -52,18 +121,7 @@ export default class EditSchedule extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.optionButtonContainer}>
-          <View style={styles.singleOption}>
-            <Text>Morning Alarm?</Text>
-            <TouchableOpacity style={styles.optionToggle}></TouchableOpacity>
-          </View>
-          <View style={styles.singleOption}>
-            <Text>Morning Routine Notifications</Text>
-            <TouchableOpacity style={styles.optionToggle}></TouchableOpacity>
-          </View>
-          <View style={styles.singleOption}>
-            <Text>Disable Morning Routine</Text>
-            <TouchableOpacity style={styles.optionToggle}></TouchableOpacity>
-          </View>
+          {this.renderRoutineToggles()}
         </View>
         <View style={styles.routineContainer}>
           <View style={styles.newEventContainer}>
@@ -78,3 +136,11 @@ export default class EditSchedule extends Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  morningRoutine: state.BaseReducer.morningRoutine,
+  afternoonRoutine: state.BaseReducer.afternoonRoutine,
+  eveningRoutine: state.BaseReducer.eveningRoutine
+})
+
+export default connect(mapStateToProps)(EditSchedule);
